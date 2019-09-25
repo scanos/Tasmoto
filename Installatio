@@ -1,0 +1,72 @@
+This shows how to make ESP based chips smart for home automation without using Arduino or other complex programming techniques. 
+
+This technique works for most Sonoff chips but the focus here are Witty Cloud and NodeMCU chips.
+In summary, you need to download a flasher utility and then a bin file, connect the chip to the USB port of your PC, select the appropriate com port and simply flash.
+
+
+From https://github.com/letscontrolit/ESPEasy/releases
+Click on the Release Megaxxxx Link
+Then go to the bottom of the page and download the zip file. Download this to your Windows PC
+On your Windows PC, unzip this and navigate to the dist folder. On my PC, that's 
+C:\Users\MYNAME\Downloads\ESPEasy-mega-20190910\ESPEasy-mega-20190910\dist
+You should see the FlashESP8266.exe file. You will need this to flash a bin file which we will do next.
+
+FRom https://github.com/arendst/Sonoff-Tasmota/releases
+Click on the Sonoff-Tasmota XX link and find, sonoff.bin. Download this to your PC then move this to the folder, 
+C:\Users\MYNAME\Downloads\ESPEasy-mega-20190910\ESPEasy-mega-20190910\dist
+
+Next connect your chip to the Windows USB port, then from the ..dist (see above) folder, click on FlashESP8266.exe. You then select the select the appropriate com port
+and sonoff.bin file and click ok. You will see in the dialog window something like
+trying to connect
+        flush start
+        setting serial port timeouts to 1 ms
+        setting serial port timeouts to 1000 ms
+        flush complete
+        espcomm_send_command: sending command header
+        espcomm_send_command: sending command payload
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+        espcomm_send_command: receiving 2 bytes of data
+Uploading 515872 bytes from .\sonoff.bin to flash at 0x00000000
+        erasing flash
+        size: 07df20 address: 000000
+        first_sector_index: 0
+        total_sector_count: 126
+        head_sector_count: 16
+        adjusted_sector_count: 110
+        erase_size: 06e000
+        espcomm_send_command: sending command header
+        espcomm_send_command: sending command payload
+        setting serial port timeouts to 15000 ms
+        setting serial port timeouts to 1000 ms
+        espcomm_send_command: receiving 2 bytes of data
+        writing flash
+.........................
+
+Hopefully, you will see flash Complete dialog box. Click ok then go to your wifi settings and you should see a SonOFF wifi point. Click on this and in your browser
+you should be redirected to a web page 192.168.4.1 - Add your home network credentials and press save. The chip will now connect to your network. 
+Find its IP address from say your router page, in my case, 192.168.1.254, and then add the IP address in a web browser.
+
+You should see the following options
+
+Toggle
+Configuration
+Information
+Firmware Upgrade
+Console
+Restart
+
+The Toggle button may be used to turn the chip ON and OFF>
+
+Click on Configuration, Configure Module, and select Witty Cloud 32 if that is the device you are using. Click save whereupon the chip will restart. 
+You should now have a dimmer switch from which you can control the brightness of the Witty.
+
+Next, click on Configuration, Configure Module again and using the dropdown on the right, change ADC0 to Analog (1).  Click save whereupon the chip will restart. 
+You should now see the dimmer switch and the readings from the internal LDR on the Witty. Note that the NodeMCU doesn't have this.
+
+
