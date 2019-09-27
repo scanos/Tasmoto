@@ -1,5 +1,4 @@
-![Ensure that you set up Witty GPIOs as follows](https://github.com/scanos/Tasmoto/edit/master/using_pir_switch_with_witty_cloud/gpio_pir_tasmoto.jpg)
-<img src="https://raw.githubusercontent.com/scanos/Tasmoto/master/Untitled.png">
+![gpio_pir_tasmoto](https://user-images.githubusercontent.com/29405761/65774544-5c07a800-e136-11e9-9687-fcb629d29fbc.jpg)
 
 ========================PIR switch on when triggered
 Rule1 on Backlog switch1#state=1 do Dimmer 80; delay 100; do Dimmer 0 endon
