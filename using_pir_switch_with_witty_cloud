@@ -1,5 +1,4 @@
-![Ensure that you set up Witty GPIOs as follows](Untitled.png)
-![Contribution guidelines for this project](https://github.com/scanos/Tasmoto/blob/master/Untitled.png)
+![Ensure that you set up Witty GPIOs as follows](https://raw.githubusercontent.com/scanos/Tasmoto/master/Untitled.png)
 
 ========================PIR switch on when triggered
 Rule1 on Backlog switch1#state=1 do Dimmer 80; delay 100; do Dimmer 0 endon
