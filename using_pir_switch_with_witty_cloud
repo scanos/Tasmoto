@@ -1,4 +1,4 @@
-Ensure that you set up Witty GPIOs as follows
+Ensure that you set up Witty GPIOs as follows (Untitled.png)
 
 ========================PIR switch on when triggered
 Rule1 on Backlog switch1#state=1 do Dimmer 80; delay 100; do Dimmer 0 endon
