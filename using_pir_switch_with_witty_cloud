@@ -1,0 +1,17 @@
+Ensure that you set up Witty GPIOs as follows
+
+========================PIR switch on when triggered
+Rule1 on Backlog switch1#state=1 do Dimmer 80; delay 100; do Dimmer 0 endon
+========================PIR switch on when triggered
+
+========================PIR switch on when triggered day only
+rule1 on Switch1#state=1 do backlog event checksunrise=%time%; event checksunset=%time% endon
+  on event#checksunrise>%sunrise% do Dimmer 80 endon
+  on event#checksunset<%sunset% do Dimmer 80 endon
+========================PIR switch on when triggered day only
+
+========================PIR switch on when triggered night only
+rule1 on Switch1#state=1 do backlog event checksunrise=%time%; event checksunset=%time% endon
+  on event#checksunrise<%sunrise% do Dimmer 80 endon
+  on event#checksunset>%sunset% do Dimmer 80 endon
+========================PIR switch on when triggered day only
