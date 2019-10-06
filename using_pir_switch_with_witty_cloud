@@ -1,3 +1,14 @@
 
+cmnd/sonoff_witty12/SENSOR/dimmer 0 or Dimmer 0 
+cmnd/sonoff_witty12/SENSOR/Color #FBE274 or Color #FBE274
+cmnd/sonoff_witty12/POWER ON
+stat/sonoff_witty12/STATUS
 
+rule1 on Backlog SR04#Distance<100 do Dimmer 80; delay 10; do Dimmer 0 endon
+
+//vey impt for timer at night
+Rule1
+  on Switch1#state=1 do backlog event checksunrise=%time%; event checksunset=%time% endon
+  on event#checksunset>%sunset% do backlog WebSend [192.168.1.198] POWER1 1;delay 300;WebSend [192.168.1.198] POWER1 0 endon
+  on event#checksunrise<%sunrise% do backlog WebSend [192.168.1.198] POWER1 1;delay 300;WebSend [192.168.1.198] POWER1 0 endon
 
