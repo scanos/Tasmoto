@@ -1,18 +1,15 @@
 very important 
 https://github.com/tasmota/tasmotizer/releases
-
 if having problems flashing sonoff use
 
 WebSend [192.168.1.169] power1 on //works
 
 rule1 on switch1#state=OFF do dimmer 100 endon // works
-
 rule1 on switch1#state=OFF backlog do dimmer 100; delay 3000; dimmer 0 endon // 
-
 rule1 on switch1#state=OFF DO backlog dimmer 100; delay 200; dimmer 0 ENDON // 
 ON <trigger> DO Backlog <command1>; <command2>; <command3> ENDON
 
-
+for lights at night only
 Rule1
   on Switch1#state=1 do backlog event checksunrise=%time%; event checksunset=%time% endon
   on event#checksunset>%sunset% do backlog WebSend [192.168.1.169] POWER1 1;delay 300;WebSend [192.168.1.169] POWER1 0 endon
@@ -25,10 +22,11 @@ on analog#a0<400 do backlog Rule3 0; Rule2 1 endon
 SR04#Distance
 Rule1 on SR04#Distance<50 do backlog WebSend [192.168.1.237] POWER1 1 endon
 
-
-Rule1 on SR04#Distance<50 do backlog event checksunrise=%time%; event checksunset=%time% endon 
-on event#checksunset>%sunset% do backlog WebSend [192.168.1.237] POWER1 1;delay 3600;WebSend [192.168.1.237] POWER1 0 endon
-on event#checksunrise<%sunrise% do backlog WebSend [192.168.1.237] POWER1 1;delay 3600;WebSend [192.168.1.237] POWER1 0 endon
+Rule1 on SR04#Distance<50 do backlog event checksunrise=%time%; event checksunset=%time% endon on event#checksunset>%sunset% do backlog WebSend [192.168.1.237] POWER1 1;
+delay 3000;WebSend [192.168.1.237] POWER1 0 endon on event#checksunrise<%sunrise% 
+do backlog WebSend [192.168.1.237] POWER1 1;delay 3000;WebSend [192.168.1.237] POWER1 0 endon
 
 to turn witty built in led on when say someone within a certain distance
 Rule1 on SR04#Distance<50 do backlog dimmer 100;delay 300;dimmer 0 endon 
+
+REMEMBER TO ACTIVATE RULES USE rule1 on
