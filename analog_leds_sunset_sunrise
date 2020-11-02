@@ -17,3 +17,10 @@ Rule1
 
 rule1 on analog#A0>400 do backlog ledpower1 on;delay 300;ledpower1 off endon
 on analog#a0<400 do backlog Rule3 0; Rule2 1 endon
+SR04#Distance
+Rule1 on SR04#Distance<50 do backlog WebSend [192.168.1.237] POWER1 1 endon
+
+
+Rule1 on SR04#Distance<50 do backlog event checksunrise=%time%; event checksunset=%time% endon 
+on event#checksunset>%sunset% do backlog WebSend [192.168.1.237] POWER1 1;delay 3600;WebSend [192.168.1.237] POWER1 0 endon
+on event#checksunrise<%sunrise% do backlog WebSend [192.168.1.237] POWER1 1;delay 3600;WebSend [192.168.1.237] POWER1 0 endon
