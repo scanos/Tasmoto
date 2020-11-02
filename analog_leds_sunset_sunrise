@@ -1,3 +1,8 @@
+very important 
+https://github.com/tasmota/tasmotizer/releases
+
+if having problems flashing sonoff use
+
 WebSend [192.168.1.169] power1 on //works
 
 rule1 on switch1#state=OFF do dimmer 100 endon // works
@@ -24,3 +29,6 @@ Rule1 on SR04#Distance<50 do backlog WebSend [192.168.1.237] POWER1 1 endon
 Rule1 on SR04#Distance<50 do backlog event checksunrise=%time%; event checksunset=%time% endon 
 on event#checksunset>%sunset% do backlog WebSend [192.168.1.237] POWER1 1;delay 3600;WebSend [192.168.1.237] POWER1 0 endon
 on event#checksunrise<%sunrise% do backlog WebSend [192.168.1.237] POWER1 1;delay 3600;WebSend [192.168.1.237] POWER1 0 endon
+
+to turn witty built in led on when say someone within a certain distance
+Rule1 on SR04#Distance<50 do backlog dimmer 100;delay 300;dimmer 0 endon 
