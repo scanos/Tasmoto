@@ -30,3 +30,21 @@ to turn witty built in led on when say someone within a certain distance
 Rule1 on SR04#Distance<50 do backlog dimmer 100;delay 300;dimmer 0 endon 
 
 REMEMBER TO ACTIVATE RULES USE rule1 on
+
+To create rules remotely on another device use the following 
+curl -X GET --proto-default http "http://192.168.1.239/cm?user=admin&password=very_strong_password&cmnd=Rule1%20On%20switch3%20state=OFF%20do%20dimmer%20100%20endon"
+
+SECURITY CONSIDERATIONS
+These commands should not be used in production areas unless you strength the security around the configuration. The steps to do this include
+1. Use a strong web admin password on the Witty / Tasmota device 
+(From the Witty web interface go to the menu Configuration/Configure Other/ then set and enable the Web Admin Password 
+To use the web admin password in your scripts you will need to use the format "cm?user=admin&password=very_strong_password&cmnd=" 
+Obviously you have to remember the password.
+
+2. Do not use on a LAN which has a sensitive data. Consider partitioning the LAN for your IOT devices and use a DMZ.
+
+3. Enable HTTPS on your Tasmota devices.
+
+4. Ensure your scripts are OWASP compliant
+
+5. etc
