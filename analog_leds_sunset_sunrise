@@ -2,6 +2,19 @@ very important
 https://github.com/tasmota/tasmotizer/releases
 if having problems flashing sonoff use
 
+###################################################################
+Make sure Light is on at night~
+Using Timers, you can set a light to turn on and off to illuminate a street/patio by night. But if the device has no power at the trigger time, then, when it powers up, the light will be off all night. So, as a fail-safe, implement a conditional control to be checked at Tasmota Startup.
+
+Set Timers to turn on your light at Sunset and Turn off at sunrise. Use poweronstate 0 in order to start with lights off when powering up your device. Set the following rules:
+
+
+Rule1
+  ON Time#Initialized DO Backlog event checksunrise=%time%; event checksunset=%time% ENDON
+  ON event#checksunset>%sunset% DO Power1 1 ENDON
+  ON event#checksunrise<%sunrise% DO Power1 1 ENDON
+######################################################################3
+
 WebSend [192.168.1.169] power1 on //works
 
 rule1 on switch1#state=OFF do dimmer 100 endon // works
